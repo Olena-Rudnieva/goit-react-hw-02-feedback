@@ -7,17 +7,22 @@ class Feedback extends Component {
     bad: 0,
   };
 
-  handleClick = () => 
-    this.setState(prevState) => ({good: prevState.good + 1});
-  
+  handleClickGood = () =>
+    this.setState(prevState => ({ good: prevState.good + 1 }));
+
+  handleClickNeutral = () =>
+    this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
+
+  handleClickBad = () =>
+    this.setState(prevState => ({ bad: prevState.bad + 1 }));
 
   render() {
     return (
       <div>
         <h3>Please leave feedback</h3>
-        <button onClick={this.handleClick}>Good</button>
-        <button onClick={this.handleClick}>Neutral</button>
-        <button onClick={this.handleClick}>Bad</button>
+        <button onClick={this.handleClickGood}>Good</button>
+        <button onClick={this.handleClickNeutral}>Neutral</button>
+        <button onClick={this.handleClickBad}>Bad</button>
         <h2>Statistics</h2>
         <p>
           Good: <span>{this.state.good}</span>{' '}
