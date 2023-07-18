@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Feedback from './Feedback/Feedback';
+import Statistics from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -8,7 +9,7 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleClick = option => {
+  onLeaveFeedback = option => {
     this.setState(prevState => ({ [option]: prevState[option] + 1 }));
   };
 
@@ -16,13 +17,20 @@ export class App extends Component {
     return this.state.good + this.state.neutral + this.state.bad;
   };
 
+  countPositiveFeedbackPercentage = () => {
+    return Math.round((this.state.good / this.countTotalFeedback()) * 100) || 0;
+  };
+
   render() {
     return (
       <div>
-        <Feedback
-          props={this.state}
-          handleClick={this.handleClick}
+        <Feedback options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
           total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
         />
       </div>
     );
