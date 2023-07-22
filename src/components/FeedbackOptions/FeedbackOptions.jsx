@@ -5,14 +5,13 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <FeedbackWrapper>
       {Object.keys(options).map(option => {
-        const newOption = option.charAt(0).toUpperCase() + option.slice(1);
         return (
           <Button
             key={option}
             type="button"
             onClick={() => onLeaveFeedback(option)}
           >
-            {newOption}
+            {option}
           </Button>
         );
       })}
